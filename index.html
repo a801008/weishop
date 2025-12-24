@@ -53,7 +53,7 @@
             font-size: 0.85rem;
         }
 
-        /* 聯絡資訊區塊 (三欄併排) */
+        /* 聯絡資訊區塊 */
         .contact-section {
             display: grid;
             grid-template-columns: repeat(3, 1fr); 
@@ -71,7 +71,7 @@
         }
 
         .contact-icon {
-            font-size: 1.5rem; /* Emoji 大小 */
+            font-size: 1.5rem;
             margin-bottom: 2px;
             line-height: 1;
         }
@@ -96,13 +96,14 @@
             justify-content: center;
             color: #ccc;
             font-size: 0.8rem;
+            overflow: hidden;
         }
         
         .qr-box img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            display: block; /* 確保圖片正常顯示 */
+            display: block;
         }
 
         /* 按鈕樣式 */
@@ -149,7 +150,7 @@
             border: 1px solid #eee;
         }
 
-        /* 預設圖片樣式 (當沒有圖片時顯示的色塊) */
+        /* 圖片佔位符 */
         .album-img-placeholder {
             width: 100%;
             height: 130px;
@@ -217,23 +218,26 @@
 
     <div class="contact-section">
         <div class="contact-card line">
-            <div class="contact-icon">💬</div> <h3>LINE 客服</h3>
+            <div class="contact-icon">💬</div>
+            <h3>LINE 客服</h3>
             <div class="qr-box">
-                <img src="qr_line_oa.png" alt="QR" onerror="this.style.display='none'; this.parentNode.innerText='無圖片'">
+                <img src="qr_line_oa.png" alt="QR" onerror="this.src='qr_line_oa.jpg';"> 
             </div>
             <a id="link-line-oa" href="#" target="_blank" class="btn-link btn-line">加好友</a>
         </div>
 
         <div class="contact-card line">
-            <div class="contact-icon">👥</div> <h3>LINE 社群</h3>
+            <div class="contact-icon">👥</div>
+            <h3>LINE 社群</h3>
             <div class="qr-box">
-                <img src="qr_line_group.png" alt="QR" onerror="this.style.display='none'; this.parentNode.innerText='無圖片'">
+                <img src="qr_line_group.jpg" alt="QR" onerror="this.src='qr_line_group.png';">
             </div>
             <a id="link-line-group" href="#" target="_blank" class="btn-link btn-line">加入社群</a>
         </div>
 
         <div class="contact-card shopee">
-            <div class="contact-icon">🛍️</div> <h3>蝦皮賣場</h3>
+            <div class="contact-icon">🛍️</div>
+            <h3>蝦皮賣場</h3>
             <div class="qr-box" style="background:white; border:none;">
                 <span style="font-size: 0.8rem; color: #ee4d2d; font-weight:bold;">Shopee</span>
             </div>
@@ -268,7 +272,7 @@
             title: "湯姆貓與傑利鼠 85週年快閃店",
             date: "1/2 結單",
             link: "https://photos.app.goo.gl/f2zF71y868chfQwFA",
-            image: "", // 如果沒有圖片，留空即可
+            image: "", // 若有照片網址請填入，例如 "tom.jpg"
             active: true
         },
         {
@@ -295,20 +299,14 @@
     ];
 
     // ==============================================
-    // 程式邏輯區 (已加入防呆機制，防止轉圈圈)
+    // 程式邏輯區
     // ==============================================
 
-    // 使用 try-catch 確保程式不會因為一個小錯誤而完全卡死
     try {
-        const linkLineOA = document.getElementById('link-line-oa');
-        const linkLineGroup = document.getElementById('link-line-group');
-        const linkShopee = document.getElementById('link-shopee');
-        const footerYear = document.getElementById('footer-year');
-
-        if(linkLineOA) linkLineOA.href = shopConfig.links.lineOA;
-        if(linkLineGroup) linkLineGroup.href = shopConfig.links.lineGroup;
-        if(linkShopee) linkShopee.href = shopConfig.links.shopee;
-        if(footerYear) footerYear.innerText = new Date().getFullYear();
+        document.getElementById('link-line-oa').href = shopConfig.links.lineOA;
+        document.getElementById('link-line-group').href = shopConfig.links.lineGroup;
+        document.getElementById('link-shopee').href = shopConfig.links.shopee;
+        document.getElementById('footer-year').innerText = new Date().getFullYear();
 
         const listContainer = document.getElementById('album-list');
 
@@ -322,9 +320,9 @@
                 const statusClass = album.active ? 'status-on' : 'status-off';
                 const statusText = album.active ? '🟢 連線中' : '🔴 已結束';
 
-                // 處理圖片：如果有連結就顯示圖片，沒有就顯示灰色方塊
+                // 處理相簿圖片：空的就顯示相機
                 let imgHtml = '';
-                if (album.image) {
+                if (album.image && album.image.length > 0) {
                     imgHtml = `<img src="${album.image}" alt="${album.title}" class="album-img" onerror="this.style.display='none'">`;
                 } else {
                     imgHtml = `<div class="album-img-placeholder">📷</div>`;
@@ -341,10 +339,7 @@
                 listContainer.appendChild(card);
             });
         }
-    } catch (error) {
-        console.log("網頁發生錯誤:", error);
-        // 這裡可以防止網頁完全空白
-    }
+    } catch (e) { console.log(e); }
 </script>
 
 </body>
