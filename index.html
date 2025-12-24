@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小微購店 | 官方網站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- CSS 樣式表 --- */
+        :root {
+            --primary-color: #FF8D9D;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --text-main: #333;
+            --text-sub: #666;
+            --line-color: #06c755;
+            --shopee-color: #ee4d2d;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            line-height: 1.4;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 10px; /* 邊距再縮小一點 */
+        }
+
+        /* 頁首 Header */
+        header {
+            text-align: center;
+            padding: 15px 0 10px;
+            background: white;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 15px;
+        }
+
+        .store-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        .store-slogan {
+            color: var(--text-sub);
+            margin-top: 5px;
+            font-size: 0.85rem;
+        }
+
+        /* 聯絡資訊區塊 - 修改為 3 欄模式 */
+        .contact-section {
+            display: grid;
+            /* 強制設定為 3 欄，讓所有按鈕都在同一排 */
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 8px; /* 間距縮小以容納三個 */
+            margin-bottom: 20px;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            padding: 10px 5px; /* 左右內距縮小，避免手機版撐爆 */
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            /* 移除原本蝦皮跨欄的設定，讓它跟其他人一樣 */
+        }
+
+        .contact-icon {
+            font-size: 1.2rem; /* 圖示再縮小 */
+            margin-bottom: 2px;
+        }
+        .line .contact-icon { color: var(--line-color); }
+        .shopee .contact-icon { color: var(--shopee-color); }
+
+        .contact-card h3 { 
+            margin: 0 0 5px 0; 
+            font-size: 0.8rem; /* 標題縮小 */
+            white-space: nowrap; /* 強制不換行 */
+        }
+
+        /* 手機版隱藏描述文字，只留標題 */
+        .contact-desc {
+            display: none; 
+        }
+
+        .qr-box {
+            width: 80px; /* QR 圖片縮到最小可視範圍 */
+            height: 80px;
+            margin: 5px auto;
+            background: #fafafa;
+            padding: 3px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+        
+        .qr-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* 按鈕樣式 - 極致緊湊 */
+        .btn-link {
+            display: block; /* 滿寬 */
+            padding: 5px 0;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 0.75rem; /* 字體縮小 */
+            margin: 5px auto 0;
+            width: 90%;
+        }
+        .btn-line { background-color: var(--line-color); }
+        .btn-shopee { background-color: var(--shopee-color); }
+
+        /* 相簿區 */
+        .section-title {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #444;
+            border-top: 1px dashed #ddd;
+            padding-top: 15px;
+        }
+
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 雙欄 */
+            gap: 10px;
+        }
+
+        .album-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eee;
+        }
+
+        .album-img {
+            width: 100%;
+            height: 130px; /* 圖片高度 */
+            object-fit: cover;
+            background-color: #ececec;
+        }
+
+        .album-content {
+            padding: 8px;
+            flex: 1;
+        }
+
+        .tag-status {
+            font-size: 0.65rem;
+            padding: 2px 5px;
+            border-radius: 3px;
+            margin-bottom: 3px;
+            display: inline-block;
+        }
+        .status-on { background: #e3f9e5; color: #2e7d32; }
+        .status-off { background: #ffebee; color: #c62828; }
+
+        .album-title {
+            font-size: 0.9rem;
+            margin: 3px 0;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .album-date {
+            font-size: 0.75rem;
+            color: #999;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            font-size: 0.75rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1 class="store-name">小微購店</h1>
+        <p class="store-slogan">高雄代購 | 誠信服務</p>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="contact-section">
+        <div class="contact-card line">
+            <div class="contact-icon"><i class="fab fa-line"></i></div>
+            <h3>LINE 客服</h3>
+            <div class="qr-box">
+                <img src="qr_line_oa.png" alt="QR" onerror="this.src='https://via.placeholder.com/150?text=QR'">
+            </div>
+            <a id="link-line-oa" href="#" target="_blank" class="btn-link btn-line">加好友</a>
+        </div>
+
+        <div class="contact-card line">
+            <div class="contact-icon"><i class="fas fa-users"></i></div>
+            <h3>LINE 社群</h3>
+            <div class="qr-box">
+                <img src="qr_line_group.png" alt="QR" onerror="this.src='https://via.placeholder.com/150?text=QR'">
+            </div>
+            <a id="link-line-group" href="#" target="_blank" class="btn-link btn-line">加入社群</a>
+        </div>
+
+        <div class="contact-card shopee">
+            <div class="contact-icon"><i class="fas fa-shopping-bag"></i></div>
+            <h3>蝦皮賣場</h3>
+            <div class="qr-box" style="background:white; border:none;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg" alt="Logo" style="object-fit: contain; padding: 10px;">
+            </div>
+            <a id="link-shopee" href="#" target="_blank" class="btn-link btn-shopee">逛賣場</a>
+        </div>
+    </div>
+
+    <h2 class="section-title">連線代購相簿</h2>
+    <div id="album-list" class="album-grid"></div>
+
+</div>
+
+<footer>
+    <p>© <span id="footer-year"></span> 小微購店</p>
+</footer>
+
+<script>
+    // ==============================================
+    // 設定區
+    // ==============================================
+    
+    const shopConfig = {
+        links: {
+            lineOA: "https://lin.ee/SAldjam", 
+            lineGroup: "https://reurl.cc/mr7Q87", 
+            shopee: "https://shopee.tw/a550130/" 
+        }
+    };
+
+    const albums = [
+        {
+            title: "湯姆貓與傑利鼠 85週年快閃店",
+            date: "1/2 結單",
+            link: "https://photos.app.goo.gl/f2zF71y868chfQwFA",
+            image: "https://upload.wikimedia.org/wikipedia/en/2/2f/Tom_and_Jerry_Standard_Title_Card.jpg", 
+            active: true
+        },
+        {
+            title: "美樂蒂 & 酷洛米 主題快閃店",
+            date: "12/28 結單",
+            link: "https://photos.app.goo.gl/Ek7sRqRyXMYwuURL8",
+            image: "https://upload.wikimedia.org/wikipedia/en/6/6f/My_Melody_Sanrio_art.png",
+            active: true
+        },
+        {
+            title: "日本環球影城 USJ 連線",
+            date: "長期代購",
+            link: "#",
+            image: "https://via.placeholder.com/300x200?text=USJ",
+            active: true
+        },
+        {
+            title: "迪士尼 聖誕限定 (已結單)",
+            date: "12/15 結單",
+            link: "#",
+            image: "https://via.placeholder.com/300x200?text=Disney",
+            active: false
+        }
+    ];
+
+    // ==============================================
+    // 程式邏輯區
+    // ==============================================
+
+    document.getElementById('link-line-oa').href = shopConfig.links.lineOA;
+    document.getElementById('link-line-group').href = shopConfig.links.lineGroup;
+    document.getElementById('link-shopee').href = shopConfig.links.shopee;
+    document.getElementById('footer-year').innerText = new Date().getFullYear();
+
+    const listContainer = document.getElementById('album-list');
+
+    albums.forEach(album => {
+        const card = document.createElement('a');
+        card.className = 'album-card';
+        card.href = album.link;
+        card.target = "_blank";
+
+        const statusClass = album.active ? 'status-on' : 'status-off';
+        const statusText = album.active ? '🟢 連線中' : '🔴 已結束';
+
+        card.innerHTML = `
+            <img src="${album.image}" alt="${album.title}" class="album-img" onerror="this.src='https://via.placeholder.com/300?text=No+Img'">
+            <div class="album-content">
+                <span class="tag-status ${statusClass}">${statusText}</span>
+                <h3 class="album-title">${album.title}</h3>
+                <div class="album-date">${album.date}</div>
+            </div>
+        `;
+        listContainer.appendChild(card);
+    });
+</script>
+
+</body>
+</html>
