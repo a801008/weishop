@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>小微購店 | 官方網站</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* --- CSS 樣式表 --- */
         :root {
@@ -29,7 +28,7 @@
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 10px; /* 邊距再縮小一點 */
+            padding: 10px;
         }
 
         /* 頁首 Header */
@@ -54,68 +53,67 @@
             font-size: 0.85rem;
         }
 
-        /* 聯絡資訊區塊 - 修改為 3 欄模式 */
+        /* 聯絡資訊區塊 (三欄併排) */
         .contact-section {
             display: grid;
-            /* 強制設定為 3 欄，讓所有按鈕都在同一排 */
             grid-template-columns: repeat(3, 1fr); 
-            gap: 8px; /* 間距縮小以容納三個 */
+            gap: 8px; 
             margin-bottom: 20px;
         }
 
         .contact-card {
             background: var(--card-bg);
-            padding: 10px 5px; /* 左右內距縮小，避免手機版撐爆 */
+            padding: 10px 5px;
             border-radius: 10px;
             text-align: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             border: 1px solid #eee;
-            /* 移除原本蝦皮跨欄的設定，讓它跟其他人一樣 */
         }
 
         .contact-icon {
-            font-size: 1.2rem; /* 圖示再縮小 */
+            font-size: 1.5rem; /* Emoji 大小 */
             margin-bottom: 2px;
+            line-height: 1;
         }
-        .line .contact-icon { color: var(--line-color); }
-        .shopee .contact-icon { color: var(--shopee-color); }
-
+        
         .contact-card h3 { 
             margin: 0 0 5px 0; 
-            font-size: 0.8rem; /* 標題縮小 */
-            white-space: nowrap; /* 強制不換行 */
+            font-size: 0.8rem;
+            white-space: nowrap; 
         }
 
-        /* 手機版隱藏描述文字，只留標題 */
-        .contact-desc {
-            display: none; 
-        }
-
+        /* QR Code 區塊 */
         .qr-box {
-            width: 80px; /* QR 圖片縮到最小可視範圍 */
+            width: 80px; 
             height: 80px;
             margin: 5px auto;
             background: #fafafa;
             padding: 3px;
             border-radius: 6px;
             border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ccc;
+            font-size: 0.8rem;
         }
         
         .qr-box img {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            display: block; /* 確保圖片正常顯示 */
         }
 
-        /* 按鈕樣式 - 極致緊湊 */
+        /* 按鈕樣式 */
         .btn-link {
-            display: block; /* 滿寬 */
+            display: block;
             padding: 5px 0;
             border-radius: 50px;
             text-decoration: none;
             color: white;
             font-weight: bold;
-            font-size: 0.75rem; /* 字體縮小 */
+            font-size: 0.75rem;
             margin: 5px auto 0;
             width: 90%;
         }
@@ -135,7 +133,7 @@
 
         .album-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 雙欄 */
+            grid-template-columns: repeat(2, 1fr);
             gap: 10px;
         }
 
@@ -151,9 +149,21 @@
             border: 1px solid #eee;
         }
 
+        /* 預設圖片樣式 (當沒有圖片時顯示的色塊) */
+        .album-img-placeholder {
+            width: 100%;
+            height: 130px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 2rem;
+        }
+
         .album-img {
             width: 100%;
-            height: 130px; /* 圖片高度 */
+            height: 130px;
             object-fit: cover;
             background-color: #ececec;
         }
@@ -207,28 +217,25 @@
 
     <div class="contact-section">
         <div class="contact-card line">
-            <div class="contact-icon"><i class="fab fa-line"></i></div>
-            <h3>LINE 客服</h3>
+            <div class="contact-icon">💬</div> <h3>LINE 客服</h3>
             <div class="qr-box">
-                <img src="qr_line_oa.png" alt="QR" onerror="this.src='https://via.placeholder.com/150?text=QR'">
+                <img src="qr_line_oa.png" alt="QR" onerror="this.style.display='none'; this.parentNode.innerText='無圖片'">
             </div>
             <a id="link-line-oa" href="#" target="_blank" class="btn-link btn-line">加好友</a>
         </div>
 
         <div class="contact-card line">
-            <div class="contact-icon"><i class="fas fa-users"></i></div>
-            <h3>LINE 社群</h3>
+            <div class="contact-icon">👥</div> <h3>LINE 社群</h3>
             <div class="qr-box">
-                <img src="qr_line_group.png" alt="QR" onerror="this.src='https://via.placeholder.com/150?text=QR'">
+                <img src="qr_line_group.png" alt="QR" onerror="this.style.display='none'; this.parentNode.innerText='無圖片'">
             </div>
             <a id="link-line-group" href="#" target="_blank" class="btn-link btn-line">加入社群</a>
         </div>
 
         <div class="contact-card shopee">
-            <div class="contact-icon"><i class="fas fa-shopping-bag"></i></div>
-            <h3>蝦皮賣場</h3>
+            <div class="contact-icon">🛍️</div> <h3>蝦皮賣場</h3>
             <div class="qr-box" style="background:white; border:none;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg" alt="Logo" style="object-fit: contain; padding: 10px;">
+                <span style="font-size: 0.8rem; color: #ee4d2d; font-weight:bold;">Shopee</span>
             </div>
             <a id="link-shopee" href="#" target="_blank" class="btn-link btn-shopee">逛賣場</a>
         </div>
@@ -261,62 +268,83 @@
             title: "湯姆貓與傑利鼠 85週年快閃店",
             date: "1/2 結單",
             link: "https://photos.app.goo.gl/f2zF71y868chfQwFA",
-            image: "https://upload.wikimedia.org/wikipedia/en/2/2f/Tom_and_Jerry_Standard_Title_Card.jpg", 
+            image: "", // 如果沒有圖片，留空即可
             active: true
         },
         {
             title: "美樂蒂 & 酷洛米 主題快閃店",
             date: "12/28 結單",
             link: "https://photos.app.goo.gl/Ek7sRqRyXMYwuURL8",
-            image: "https://upload.wikimedia.org/wikipedia/en/6/6f/My_Melody_Sanrio_art.png",
+            image: "", 
             active: true
         },
         {
             title: "日本環球影城 USJ 連線",
             date: "長期代購",
             link: "#",
-            image: "https://via.placeholder.com/300x200?text=USJ",
+            image: "",
             active: true
         },
         {
             title: "迪士尼 聖誕限定 (已結單)",
             date: "12/15 結單",
             link: "#",
-            image: "https://via.placeholder.com/300x200?text=Disney",
+            image: "",
             active: false
         }
     ];
 
     // ==============================================
-    // 程式邏輯區
+    // 程式邏輯區 (已加入防呆機制，防止轉圈圈)
     // ==============================================
 
-    document.getElementById('link-line-oa').href = shopConfig.links.lineOA;
-    document.getElementById('link-line-group').href = shopConfig.links.lineGroup;
-    document.getElementById('link-shopee').href = shopConfig.links.shopee;
-    document.getElementById('footer-year').innerText = new Date().getFullYear();
+    // 使用 try-catch 確保程式不會因為一個小錯誤而完全卡死
+    try {
+        const linkLineOA = document.getElementById('link-line-oa');
+        const linkLineGroup = document.getElementById('link-line-group');
+        const linkShopee = document.getElementById('link-shopee');
+        const footerYear = document.getElementById('footer-year');
 
-    const listContainer = document.getElementById('album-list');
+        if(linkLineOA) linkLineOA.href = shopConfig.links.lineOA;
+        if(linkLineGroup) linkLineGroup.href = shopConfig.links.lineGroup;
+        if(linkShopee) linkShopee.href = shopConfig.links.shopee;
+        if(footerYear) footerYear.innerText = new Date().getFullYear();
 
-    albums.forEach(album => {
-        const card = document.createElement('a');
-        card.className = 'album-card';
-        card.href = album.link;
-        card.target = "_blank";
+        const listContainer = document.getElementById('album-list');
 
-        const statusClass = album.active ? 'status-on' : 'status-off';
-        const statusText = album.active ? '🟢 連線中' : '🔴 已結束';
+        if(listContainer) {
+            albums.forEach(album => {
+                const card = document.createElement('a');
+                card.className = 'album-card';
+                card.href = album.link;
+                card.target = "_blank";
 
-        card.innerHTML = `
-            <img src="${album.image}" alt="${album.title}" class="album-img" onerror="this.src='https://via.placeholder.com/300?text=No+Img'">
-            <div class="album-content">
-                <span class="tag-status ${statusClass}">${statusText}</span>
-                <h3 class="album-title">${album.title}</h3>
-                <div class="album-date">${album.date}</div>
-            </div>
-        `;
-        listContainer.appendChild(card);
-    });
+                const statusClass = album.active ? 'status-on' : 'status-off';
+                const statusText = album.active ? '🟢 連線中' : '🔴 已結束';
+
+                // 處理圖片：如果有連結就顯示圖片，沒有就顯示灰色方塊
+                let imgHtml = '';
+                if (album.image) {
+                    imgHtml = `<img src="${album.image}" alt="${album.title}" class="album-img" onerror="this.style.display='none'">`;
+                } else {
+                    imgHtml = `<div class="album-img-placeholder">📷</div>`;
+                }
+
+                card.innerHTML = `
+                    ${imgHtml}
+                    <div class="album-content">
+                        <span class="tag-status ${statusClass}">${statusText}</span>
+                        <h3 class="album-title">${album.title}</h3>
+                        <div class="album-date">${album.date}</div>
+                    </div>
+                `;
+                listContainer.appendChild(card);
+            });
+        }
+    } catch (error) {
+        console.log("網頁發生錯誤:", error);
+        // 這裡可以防止網頁完全空白
+    }
 </script>
 
 </body>
