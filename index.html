@@ -270,28 +270,49 @@
     const albums = [
         {
             title: "湯姆貓與傑利鼠 85週年快閃店",
-            date: "1/2 結單",
+            date: "1/2 結束",
             link: "https://photos.app.goo.gl/f2zF71y868chfQwFA",
             image: "", // 若有照片網址請填入，例如 "tom.jpg"
             active: true
         },
         {
             title: "美樂蒂 & 酷洛米 主題快閃店",
-            date: "12/28 結單",
+            date: "12/28 結束",
             link: "https://photos.app.goo.gl/Ek7sRqRyXMYwuURL8",
             image: "", 
             active: true
         },
         {
-            title: "日本環球影城 USJ 連線",
-            date: "長期代購",
-            link: "#",
+            title: "薰香花朵凛然綻放&膽大黨",
+            date: "1/20 結束",
+            link: "https://photos.app.goo.gl/pQ4xFD4gBHtpGAbF8",
             image: "",
             active: true
         },
         {
-            title: "迪士尼 聖誕限定 (已結單)",
-            date: "12/15 結單",
+            title: "曼迪冬日派對",
+            date: "2/22 結束",
+            link: "https://photos.app.goo.gl/YXuwd2a3GCowDVvk7",
+            image: "", // 若有照片網址請填入，例如 "tom.jpg"
+            active: true
+        },
+        {
+            title: "韓國超夯綜藝《Biong Biong 地球娛樂室》",
+            date: "2/22 結束",
+            link: "https://photos.app.goo.gl/ZWsEe3NNiQGpn5Kf7",
+            image: "", // 若有照片網址請填入，例如 "tom.jpg"
+            active: true
+        },
+        {
+            title: "東京卍復仇者展 最後的世界線",
+            date: "2/22 結束",
+            link: "https://photos.app.goo.gl/QsNArPcPZ84tPb6k6",
+            image: "", // 若有照片網址請填入，例如 "tom.jpg"
+            active: true
+        },           
+        {
+            title: "沖繩連線代購",
+            date: "12/16 結單",
             link: "#",
             image: "",
             active: false
@@ -318,7 +339,7 @@
                 card.target = "_blank";
 
                 const statusClass = album.active ? 'status-on' : 'status-off';
-                const statusText = album.active ? '🟢 連線中' : '🔴 已結束';
+                const statusText = album.active ? '🟢 代購中' : '🔴 已結束';
 
                 // 處理相簿圖片：空的就顯示相機
                 let imgHtml = '';
@@ -344,3 +365,4 @@
 
 </body>
 </html>
+
