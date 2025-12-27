@@ -121,6 +121,43 @@
         .btn-line { background-color: var(--line-color); }
         .btn-shopee { background-color: var(--shopee-color); }
 
+        /* --- 新增：公告欄樣式 --- */
+        .notice-board {
+            background-color: #fff0f5; /* 淺粉色背景，呼應主色 */
+            border: 2px dashed #ffb7c5; /* 虛線邊框 */
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .notice-header {
+            font-weight: bold;
+            color: #d63384;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .notice-content {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .notice-content ul {
+            margin: 0;
+            padding-left: 20px; /* 列表縮排 */
+        }
+
+        .notice-content li {
+            margin-bottom: 5px;
+        }
+
+        /* 強調文字樣式 */
+        .highlight-red { color: #c62828; font-weight: bold; }
+
         /* 相簿區 */
         .section-title {
             text-align: center;
@@ -245,6 +282,16 @@
         </div>
     </div>
 
+    <div class="notice-board">
+        <div class="notice-header">📢 最新公告</div>
+        <div class="notice-content">
+            <ul>
+                <li>社群都會連線代購，請盡量+社群。</li>
+                <li>免費提供誠品黑卡會員消費結帳使用。</li>
+                <li>高雄能買到的都會盡量幫忙代購。</li>
+            </ul>
+        </div>
+    </div>
     <h2 class="section-title">⭐代購中的相簿⭐</h2>
     <div id="album-list" class="album-grid"></div>
 
@@ -272,7 +319,7 @@
             title: "湯姆貓與傑利鼠 85週年快閃店",
             date: "1/2 結束",
             link: "https://photos.app.goo.gl/f2zF71y868chfQwFA",
-            image: "tom.png", // 若有照片網址請填入，例如 "tom.jpg"
+            image: "tom.png", 
             active: true
         },
         {
@@ -293,23 +340,23 @@
             title: "曼迪冬日派對",
             date: "2/22 結束",
             link: "https://photos.app.goo.gl/YXuwd2a3GCowDVvk7",
-            image: "m.png", // 若有照片網址請填入，例如 "tom.jpg"
+            image: "m.png", 
             active: true
         },
         {
             title: "韓國超夯綜藝《Biong Biong 地球娛樂室》",
             date: "2/22 結束",
             link: "https://photos.app.goo.gl/ZWsEe3NNiQGpn5Kf7",
-            image: "star.png", // 若有照片網址請填入，例如 "tom.jpg"
+            image: "star.png", 
             active: true
         },
         {
             title: "東京卍復仇者展 最後的世界線",
             date: "2/22 結束",
             link: "https://photos.app.goo.gl/QsNArPcPZ84tPb6k6",
-            image: "tokyo.png", // 若有照片網址請填入，例如 "tom.jpg"
+            image: "tokyo.png", 
             active: true
-        },           
+        },            
         {
             title: "沖繩連線代購",
             date: "12/16 結單",
@@ -341,7 +388,7 @@
                 const statusClass = album.active ? 'status-on' : 'status-off';
                 const statusText = album.active ? '🟢 代購中' : '🔴 已結束';
 
-                // 處理相簿圖片：空的就顯示相機
+                // 處理相簿圖片
                 let imgHtml = '';
                 if (album.image && album.image.length > 0) {
                     imgHtml = `<img src="${album.image}" alt="${album.title}" class="album-img" onerror="this.style.display='none'">`;
@@ -365,6 +412,3 @@
 
 </body>
 </html>
-
-
-
