@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>小微購店 | 官方網站</title>
+    
+    <link rel="icon" href="weishop.png" type="image/png">
+
     <style>
         /* --- CSS 樣式表 --- */
         :root {
@@ -37,10 +40,9 @@
             background: white;
             border-bottom: 1px solid #eee;
             margin-bottom: 15px;
-            /* 移除原本的 text-align: center，改用 flex 控制 */
         }
 
-        /* 新增：用於包裹 Logo 和文字的容器，實現 Flex 佈局 */
+        /* 用於包裹 Logo 和文字的容器，實現 Flex 佈局 */
         .header-content {
             display: flex;
             align-items: center;     /* 垂直居中對齊 */
@@ -48,13 +50,13 @@
             gap: 15px;               /* Logo 與文字之間的間距 */
         }
 
-        /* 新增：Logo 圖片樣式 */
+        /* Logo 圖片樣式 */
         .header-logo {
             height: 60px; /* 設定 Logo 高度，可依需求調整 */
             width: auto;  /* 保持比例 */
         }
 
-        /* 新增：文字區塊包裹器 */
+        /* 文字區塊包裹器 */
         .header-text {
             text-align: left; /* 文字在自己的區塊內靠左對齊 */
             display: flex;
@@ -67,13 +69,13 @@
             font-weight: 800;
             color: var(--text-main);
             margin: 0;
-            line-height: 1.2; /*稍微縮緊行高以利對齊*/
+            line-height: 1.2;
         }
 
         .store-slogan {
             color: var(--text-sub);
             margin-top: 5px;
-            margin-bottom: 0; /* 確保下方無邊距 */
+            margin-bottom: 0;
             font-size: 0.85rem;
         }
         /* --- 頁首 Header 修改結束 --- */
@@ -316,6 +318,7 @@
         <div class="notice-content">
             <ul>
                 <li>社群都會連線代購，請盡量+社群。</li>
+                <li>有問題都可以直接+LINE客服 1對1 真人回覆。</li>
                 <li style="background-color: yellow; font-weight: bold;">免費提供誠品黑卡會員消費結帳使用。</li>
                 <li>高雄能買到的都會盡量幫忙代購。</li>
             </ul>
