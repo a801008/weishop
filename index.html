@@ -31,13 +31,35 @@
             padding: 10px;
         }
 
-        /* 頁首 Header */
+        /* --- 頁首 Header 修改區塊 --- */
         header {
-            text-align: center;
-            padding: 15px 0 10px;
+            padding: 15px 0;
             background: white;
             border-bottom: 1px solid #eee;
             margin-bottom: 15px;
+            /* 移除原本的 text-align: center，改用 flex 控制 */
+        }
+
+        /* 新增：用於包裹 Logo 和文字的容器，實現 Flex 佈局 */
+        .header-content {
+            display: flex;
+            align-items: center;     /* 垂直居中對齊 */
+            justify-content: center; /* 水平居中對齊 (整體置中) */
+            gap: 15px;               /* Logo 與文字之間的間距 */
+        }
+
+        /* 新增：Logo 圖片樣式 */
+        .header-logo {
+            height: 60px; /* 設定 Logo 高度，可依需求調整 */
+            width: auto;  /* 保持比例 */
+        }
+
+        /* 新增：文字區塊包裹器 */
+        .header-text {
+            text-align: left; /* 文字在自己的區塊內靠左對齊 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .store-name {
@@ -45,13 +67,17 @@
             font-weight: 800;
             color: var(--text-main);
             margin: 0;
+            line-height: 1.2; /*稍微縮緊行高以利對齊*/
         }
 
         .store-slogan {
             color: var(--text-sub);
             margin-top: 5px;
+            margin-bottom: 0; /* 確保下方無邊距 */
             font-size: 0.85rem;
         }
+        /* --- 頁首 Header 修改結束 --- */
+
 
         /* 聯絡資訊區塊 */
         .contact-section {
@@ -121,10 +147,10 @@
         .btn-line { background-color: var(--line-color); }
         .btn-shopee { background-color: var(--shopee-color); }
 
-        /* --- 新增：公告欄樣式 --- */
+        /* 公告欄樣式 */
         .notice-board {
-            background-color: #fff0f5; /* 淺粉色背景，呼應主色 */
-            border: 2px dashed #ffb7c5; /* 虛線邊框 */
+            background-color: #fff0f5;
+            border: 2px dashed #ffb7c5;
             border-radius: 12px;
             padding: 15px;
             margin-bottom: 25px;
@@ -148,15 +174,12 @@
         
         .notice-content ul {
             margin: 0;
-            padding-left: 20px; /* 列表縮排 */
+            padding-left: 20px;
         }
 
         .notice-content li {
             margin-bottom: 5px;
         }
-
-        /* 強調文字樣式 */
-        .highlight-red { color: #c62828; font-weight: bold; }
 
         /* 相簿區 */
         .section-title {
@@ -246,8 +269,14 @@
 
 <header>
     <div class="container">
-        <h1 class="store-name">小微購店</h1>
-        <p class="store-slogan">高雄代購 | 誠信服務</p>
+        <div class="header-content">
+            <img src="weishop.png" alt="小微購店 Logo" class="header-logo">
+            
+            <div class="header-text">
+                <h1 class="store-name">小微購店</h1>
+                <p class="store-slogan">高雄代購 | 誠信服務</p>
+            </div>
+        </div>
     </div>
 </header>
 
@@ -469,9 +498,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
