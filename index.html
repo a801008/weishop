@@ -32,6 +32,8 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 10px;
+            /* 為了避免懸浮按鈕擋到最下面的版權文字，增加底部內距 */
+            padding-bottom: 80px; 
         }
 
         /* --- 頁首 Header 修改區塊 --- */
@@ -42,23 +44,20 @@
             margin-bottom: 15px;
         }
 
-        /* 用於包裹 Logo 和文字的容器，實現 Flex 佈局 */
         .header-content {
             display: flex;
-            align-items: center;     /* 垂直居中對齊 */
-            justify-content: center; /* 水平居中對齊 (整體置中) */
-            gap: 15px;               /* Logo 與文字之間的間距 */
+            align-items: center;    
+            justify-content: center; 
+            gap: 15px;                
         }
 
-        /* Logo 圖片樣式 */
         .header-logo {
-            height: 60px; /* 設定 Logo 高度，可依需求調整 */
-            width: auto;  /* 保持比例 */
+            height: 60px; 
+            width: auto;  
         }
 
-        /* 文字區塊包裹器 */
         .header-text {
-            text-align: left; /* 文字在自己的區塊內靠左對齊 */
+            text-align: left; 
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -78,8 +77,6 @@
             margin-bottom: 0;
             font-size: 0.85rem;
         }
-        /* --- 頁首 Header 修改結束 --- */
-
 
         /* 聯絡資訊區塊 */
         .contact-section {
@@ -212,7 +209,6 @@
             border: 1px solid #eee;
         }
 
-        /* 圖片佔位符 */
         .album-img-placeholder {
             width: 100%;
             height: 130px;
@@ -265,6 +261,43 @@
             font-size: 0.75rem;
             color: #aaa;
         }
+
+        /* --- 🔥 新增：懸浮按鈕樣式 (Floating Button) --- */
+        .float-btn-container {
+            position: fixed;
+            bottom: 25px;   /* 距離底部 25px */
+            right: 25px;    /* 距離右邊 25px */
+            z-index: 9999;  /* 確保在最上層 */
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            background-color: #06c755; /* LINE 官方綠色 */
+            border-radius: 50%; /* 變成圓形 */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* 陰影讓它浮起來 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1); /* 滑鼠碰到會稍微放大 */
+        }
+
+        /* LINE 圖示 (SVG) */
+        .float-btn svg {
+            width: 35px;
+            height: 35px;
+            fill: white; /* 白色 Logo */
+        }
+
     </style>
 </head>
 <body>
@@ -272,7 +305,7 @@
 <header>
     <div class="container">
         <div class="header-content">
-            <img src="weishop.png" alt="小微購店 Logo" class="header-logo">
+            <img src="weishop.png" alt="小微購店 Logo" class="header-logo" onerror="this.style.display='none'">
             
             <div class="header-text">
                 <h1 class="store-name">小微購店</h1>
@@ -317,10 +350,10 @@
         <div class="notice-header">📢 最新公告</div>
         <div class="notice-content">
             <ul>
+                <li style="font-weight: bold;">有問題以及喊單直接+LINE客服1對1</li>
                 <li>社群都會連線代購，請盡量+社群</li>
                 <li>代購費通常一個+30，限購限量特殊商品另計</li>
                 <li>不棄單、常客，可用賣貨便貨到付款</li>
-                <li style="font-weight: bold;">有問題以及喊單直接+LINE客服1對1</li>
                 <li>高雄能買的會盡量幫忙，想要的沒在下面可以提出</li>
                 <li style="background-color: yellow; font-weight: bold;">免費提供誠品黑卡會員消費結帳使用</li>
             </ul>
@@ -329,6 +362,14 @@
     <h2 class="section-title">⭐代購中的相簿⭐</h2>
     <div id="album-list" class="album-grid"></div>
 
+</div>
+
+<div class="float-btn-container">
+    <a id="float-line-link" href="#" target="_blank" class="float-btn" title="加 LINE 好友">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M272.1 204.2v71.1c0 1.8-1.4 3.2-3.2 3.2h-11.4c-1.1 0-2.1-.6-2.6-1.3l-32.6-44v42.2c0 1.8-1.4 3.2-3.2 3.2h-11.4c-1.8 0-3.2-1.4-3.2-3.2v-71.1c0-1.8 1.4-3.2 3.2-3.2H219c1 0 2.1 .5 2.6 1.4l32.6 44v-42.2c0-1.8 1.4-3.2 3.2-3.2h11.4c1.8-.1 3.3 1.4 3.3 3.1zm-82-3.2h-11.4c-1.8 0-3.2 1.4-3.2 3.2v71.1c0 1.8 1.4 3.2 3.2 3.2h11.4c1.8 0 3.2-1.4 3.2-3.2v-71.1c0-1.7-1.4-3.2-3.2-3.2zm-27.5 59.6h-31.1v-56.4c0-1.8-1.4-3.2-3.2-3.2h-11.4c-1.8 0-3.2 1.4-3.2 3.2v71.1c0 .9 .3 1.6 .9 2.2 .6 .5 1.3 .9 2.2 .9h45.7c1.8 0 3.2-1.4 3.2-3.2v-11.4c0-1.7-1.4-3.2-3.2-3.2zm-74.4 7.9c-2.9-1.2-5.7-2.3-8.6-3.5v-64c0-1.8-1.4-3.2-3.2-3.2h-11.4c-1.8 0-3.2 1.4-3.2 3.2v71.1c0 .9 .3 1.6 .9 2.2 .6 .5 1.3 .9 2.2 .9h45.7c1.8 0 3.2-1.4 3.2-3.2v-11.4c0-1.7-1.4-3.2-3.2-3.2zm-4.8-40.2c-1.8 0-3.2-1.4-3.2-3.2v-11.4c0-1.8 1.4-3.2 3.2-3.2h31.1c1.8 0 3.2 1.4 3.2 3.2v11.4c0 1.8-1.4 3.2-3.2 3.2h-31.1zm107.5 25.4c-2.9-1.2-5.7-2.3-8.6-3.5v-64c0-1.8-1.4-3.2-3.2-3.2h-11.4c-1.8 0-3.2 1.4-3.2 3.2v71.1c0 .9 .3 1.6 .9 2.2 .6 .5 1.3 .9 2.2 .9h45.7c1.8 0 3.2-1.4 3.2-3.2v-11.4c0-1.7-1.4-3.2-3.2-3.2zm-4.8-40.2c-1.8 0-3.2-1.4-3.2-3.2v-11.4c0-1.8 1.4-3.2 3.2-3.2h31.1c1.8 0 3.2 1.4 3.2 3.2v11.4c0 1.8-1.4 3.2-3.2 3.2h-31.1zM448 113.7V399c-.1 44.8-36.8 81.1-81.7 81H81c-44.8-.1-81.1-36.9-81-81.7V113c.1-44.8 36.9-81.1 81.7-81H367c44.8 .1 81.1 36.8 81 81.7zm-61.6 122.6c0-73-73.2-132.4-163.1-132.4-89.9 0-163.1 59.4-163.1 132.4 0 65.4 58 120.2 136.4 130.6 19.1 4.1 16.9 11.1 12.6 36.8-.7 4.1-3.3 16.1 14.1 8.8 17.4-7.3 93.9-55.3 128.2-94.7 23.6-26 34.9-52.3 34.9-81.5z"/>
+        </svg>
+    </a>
 </div>
 
 <footer>
@@ -479,6 +520,12 @@
         document.getElementById('link-line-group').href = shopConfig.links.lineGroup;
         document.getElementById('link-shopee').href = shopConfig.links.shopee;
         document.getElementById('footer-year').innerText = new Date().getFullYear();
+        
+        // --- 設定懸浮按鈕的連結 ---
+        const floatBtn = document.getElementById('float-line-link');
+        if(floatBtn) {
+            floatBtn.href = shopConfig.links.lineOA;
+        }
 
         const listContainer = document.getElementById('album-list');
 
@@ -516,9 +563,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
