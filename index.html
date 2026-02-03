@@ -36,12 +36,12 @@
             padding-bottom: 80px; 
         }
 
-        /* --- 頁首 Header 修改區塊 --- */
+        /* --- 頁首 Header 修改區塊 (已減少留白) --- */
         header {
-            padding: 15px 0;
+            padding: 5px 0;  /* 改小：原本是 15px */
             background: white;
             border-bottom: 1px solid #eee;
-            margin-bottom: 15px;
+            margin-bottom: 5px; /* 改小：原本是 15px */
         }
 
         .header-content {
@@ -134,14 +134,15 @@
         /* 按鈕樣式 */
         .btn-link {
             display: block;
-            padding: 5px 0;
+            padding: 8px 0; /* 稍微增加高度讓兩行字比較舒服 */
             border-radius: 50px;
             text-decoration: none;
             color: white;
             font-weight: bold;
             font-size: 0.75rem;
             margin: 5px auto 0;
-            width: 90%;
+            width: 95%; /* 稍微加寬一點點 */
+            line-height: 1.3; /* 設定行高，讓兩行字不要黏太緊 */
         }
         .btn-line { background-color: var(--line-color); }
         .btn-shopee { background-color: var(--shopee-color); }
@@ -272,12 +273,13 @@
 
         .float-btn {
             display: block;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%; /* 強制變成圓形 */
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* 陰影 */
-            overflow: hidden; /* 把圖片多餘的角切掉，變正圓 */
-            background: white; /* 預防圖片透明 */
+            /* 改小一點 */
+            width: 48px;  /* 原本 60 */
+            height: 48px; /* 原本 60 */
+            border-radius: 50%; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
+            overflow: hidden; 
+            background: white; 
             transition: transform 0.3s ease;
         }
 
@@ -289,7 +291,7 @@
         .float-btn img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; 
             display: block;
         }
 
@@ -319,7 +321,7 @@
             <div class="qr-box">
                 <img src="qr_line_oa.png" alt="QR" onerror="this.src='qr_line_oa.jpg';"> 
             </div>
-            <a id="link-line-oa" href="#" target="_blank" class="btn-link btn-line">加好友(這喊單)</a>
+            <a id="link-line-oa" href="#" target="_blank" class="btn-link btn-line">加好友<br><span style="font-size:0.65rem">(這喊單)</span></a>
         </div>
 
         <div class="contact-card line">
@@ -328,7 +330,7 @@
             <div class="qr-box">
                 <img src="qr_line_group.jpg" alt="QR" onerror="this.src='qr_line_group.png';">
             </div>
-            <a id="link-line-group" href="#" target="_blank" class="btn-link btn-line">加入社群<br>(即時連線代購)</br></a>
+            <a id="link-line-group" href="#" target="_blank" class="btn-link btn-line">加入社群<br><span style="font-size:0.65rem">(即時連線代購)</span></a>
         </div>
 
         <div class="contact-card shopee">
@@ -337,7 +339,7 @@
             <div class="qr-box" style="background:white; border:none;">
                 <span style="font-size: 0.8rem; color: #ee4d2d; font-weight:bold;">Shopee</span>
             </div>
-            <a id="link-shopee" href="#" target="_blank" class="btn-link btn-shopee">逛賣場(手續費高，定價較高)</a>
+            <a id="link-shopee" href="#" target="_blank" class="btn-link btn-shopee">逛賣場<br><span style="font-size:0.6rem">(手續費高，定價較高)</span></a>
         </div>
     </div>
 
@@ -556,8 +558,3 @@
 
 </body>
 </html>
-
-
-
-
-
