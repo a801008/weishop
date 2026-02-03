@@ -262,43 +262,35 @@
             color: #aaa;
         }
 
-        /* --- 🔥 新增：懸浮按鈕樣式 (Floating Button) --- */
+       /* --- 🔥 最終修正：懸浮按鈕樣式 (圖片版) --- */
         .float-btn-container {
             position: fixed;
-            bottom: 25px;   /* 距離底部 25px */
-            right: 25px;    /* 距離右邊 25px */
-            z-index: 9999;  /* 確保在最上層 */
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
         }
 
         .float-btn {
+            display: block;
             width: 60px;
             height: 60px;
-            background-color: #06c755; /* LINE 官方綠色 */
-            border-radius: 50%; /* 變成圓形 */
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* 陰影讓它浮起來 */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
+            border-radius: 50%; /* 強制變成圓形 */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* 陰影 */
+            overflow: hidden; /* 把圖片多餘的角切掉，變正圓 */
+            background: white; /* 預防圖片透明 */
             transition: transform 0.3s ease;
-            position: relative;
         }
 
         .float-btn:hover {
-            transform: scale(1.1); /* 滑鼠碰到會稍微放大 */
+            transform: scale(1.1);
         }
 
-       /* LINE 圖示 (SVG) */
-        .float-btn svg {
-            width: 35px;  /* 稍微放大一點，比例更完美 */
-            height: 35px;
-            fill: white;  /* 白色氣泡 */
-            /* 讓它垂直置中 */
-            display: block; 
-            margin: auto;
+        /* 圖片設定：填滿按鈕 */
+        .float-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
     </style>
@@ -327,7 +319,7 @@
             <div class="qr-box">
                 <img src="qr_line_oa.png" alt="QR" onerror="this.src='qr_line_oa.jpg';"> 
             </div>
-            <a id="link-line-oa" href="#" target="_blank" class="btn-link btn-line">加好友(喊單可這裡)</a>
+            <a id="link-line-oa" href="#" target="_blank" class="btn-link btn-line">加好友(這喊單)</a>
         </div>
 
         <div class="contact-card line">
@@ -336,7 +328,7 @@
             <div class="qr-box">
                 <img src="qr_line_group.jpg" alt="QR" onerror="this.src='qr_line_group.png';">
             </div>
-            <a id="link-line-group" href="#" target="_blank" class="btn-link btn-line">加入社群(即時連線代購)</a>
+            <a id="link-line-group" href="#" target="_blank" class="btn-link btn-line">加入社群<br>(即時連線代購)</br></a>
         </div>
 
         <div class="contact-card shopee">
@@ -369,9 +361,7 @@
 
 <div class="float-btn-container">
     <a id="float-line-link" href="#" target="_blank" class="float-btn" title="加 LINE 好友">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.471 8.652.327.244.331.602.164 1.15-.316 1.05-.694 2.22-.72 2.378-.06.37.19.78.78.37 3.325-2.292 4.43-2.906 5.86-3.327h.04c.465.118.948.183 1.437.183 6.627 0 12-4.975 12-11.111S18.627 0 12 0zm-4.72 16.5h-1.6c-.22 0-.4-.18-.4-.4v-8.2c0-.22.18-.4.4-.4h1.6c.22 0 .4.18.4.4v8.2c0 .22-.18.4-.4.4zm2.4 0c-.22 0-.4-.18-.4-.4v-8.2c0-.22.18-.4.4-.4h1.6c.22 0 .4.18.4.4v8.2c0 .22-.18.4-.4.4zm2.4 0c-.22 0-.4-.18-.4-.4v-8.2c0-.22.18-.4.4-.4h1.6c.22 0 .4.18.4.4v5.6h2.8c.22 0 .4.18.4.4v1.6c0 .22-.18.4-.4.4h-4.4zm6.8 0h-1.6c-.22 0-.4-.18-.4-.4v-8.2c0-.22.18-.4.4-.4h4.4c.22 0 .4.18.4.4v1.6c0 .22-.18.4-.4.4h-2.8v1.4h2.8c.22 0 .4.18.4.4v1.6c0 .22-.18.4-.4.4h-2.8v1.8h2.8c.22 0 .4.18.4.4v1.6c0 .22-.18.4-.4.4z"/>
-        </svg>
+        <img src="line_button.png" alt="LINE">
     </a>
 </div>
 
@@ -566,6 +556,7 @@
 
 </body>
 </html>
+
 
 
 
