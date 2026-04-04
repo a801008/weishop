@@ -32,33 +32,31 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 10px;
-            /* 為了避免懸浮按鈕擋到最下面的版權文字，增加底部內距 */
             padding-bottom: 80px; 
         }
 
-        /* --- 🔥 修改 1：頁首 Header 極致緊湊化 --- */
+        /* 頁首 Header */
         header {
-            padding: 0;  /* 移除外部內距 */
+            padding: 0;
             background: white;
             border-bottom: 1px solid #eee;
             margin-bottom: 10px;
         }
 
-        /* 特別針對 Header 裡面的 container 減少上方留白 */
         header .container {
-            padding-top: 5px;    /* 上方只留 5px (原本是 10px) */
-            padding-bottom: 5px; /* 下方只留 5px */
+            padding-top: 5px;   
+            padding-bottom: 5px; 
         }
 
         .header-content {
             display: flex;
             align-items: center;    
             justify-content: center; 
-            gap: 10px; /* 縮小 Logo 跟文字的間距 */
+            gap: 10px; 
         }
 
         .header-logo {
-            height: 50px; /* Logo 稍微改小一點點配合緊湊版面 */
+            height: 50px; 
             width: auto;  
         }
 
@@ -70,7 +68,7 @@
         }
 
         .store-name {
-            font-size: 1.4rem; /* 字體微調，避免太壓迫 */
+            font-size: 1.4rem; 
             font-weight: 800;
             color: var(--text-main);
             margin: 0;
@@ -113,7 +111,7 @@
             white-space: nowrap; 
         }
 
-        /* QR Code 區塊 */
+        /* QR Code */
         .qr-box {
             width: 80px; 
             height: 80px;
@@ -137,7 +135,7 @@
             display: block;
         }
 
-        /* --- 🔥 修改 3：按鈕文字行高調整 (解決字黏在一起) --- */
+        /* 按鈕樣式 */
         .btn-link {
             display: block;
             padding: 6px 0;
@@ -148,12 +146,12 @@
             font-size: 0.75rem;
             margin: 5px auto 0;
             width: 95%;
-            line-height: 1.5; /* 增加行高，讓兩行字分開一點 */
+            line-height: 1.5; 
         }
         .btn-line { background-color: var(--line-color); }
         .btn-shopee { background-color: var(--shopee-color); }
 
-        /* 公告欄樣式 */
+        /* 公告欄 */
         .notice-board {
             background-color: #fff0f5;
             border: 2px dashed #ffb7c5;
@@ -187,15 +185,39 @@
             margin-bottom: 5px;
         }
 
-        /* 相簿區 */
+        /* 相簿區標題 */
         .section-title {
             text-align: center;
             font-size: 1.1rem;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-weight: bold;
             color: #444;
             border-top: 1px dashed #ddd;
             padding-top: 15px;
+        }
+
+        /* --- 收合按鈕樣式 (配合您的截圖風格) --- */
+        .toggle-btn-wrapper {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .toggle-btn {
+            display: inline-block;
+            padding: 6px 20px;
+            background-color: #f2fbf7;
+            color: #4a8275;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            border: 2px dashed #c1e0d7;
+            transition: all 0.2s;
+        }
+        
+        .toggle-btn:active {
+            background-color: #e2f3ec;
         }
 
         .album-grid {
@@ -247,7 +269,7 @@
             display: inline-block;
         }
         .status-on { background: #e3f9e5; color: #2e7d32; }
-        .status-off { background: #ffebee; color: #c62828; }
+        .status-off { background: #f5f5f5; color: #888; } /* 已結束的標籤改成低調的灰色 */
 
         .album-title {
             font-size: 0.9rem;
@@ -269,7 +291,7 @@
             color: #aaa;
         }
 
-       /* --- 🔥 修改 2：懸浮按鈕再縮小 --- */
+        /* 懸浮按鈕 */
         .float-btn-container {
             position: fixed;
             bottom: 25px;
@@ -279,7 +301,7 @@
 
         .float-btn {
             display: block;
-            width: 40px;  /* 從 48px 改為 40px */
+            width: 40px;  
             height: 40px; 
             border-radius: 50%; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
@@ -292,7 +314,6 @@
             transform: scale(1.1);
         }
 
-        /* 圖片設定：填滿按鈕 */
         .float-btn img {
             width: 100%;
             height: 100%;
@@ -361,8 +382,21 @@
             </ul>
         </div>
     </div>
-    <h2 class="section-title">⭐代購中的相簿⭐</h2>
-    <div id="album-list" class="album-grid"></div>
+
+    <h2 class="section-title">⭐ 代購進行中</h2>
+    <div id="active-album-list" class="album-grid"></div>
+
+    <br><br>
+
+    <h2 class="section-title" style="color: #888;">📦 已結束代購</h2>
+    
+    <div class="toggle-btn-wrapper" id="toggle-btn-wrapper" style="display: none;">
+        <div id="toggle-ended-btn" class="toggle-btn">▼ 顯示已結束</div>
+    </div>
+    
+    <div id="ended-section" style="display: none;">
+        <div id="ended-album-list" class="album-grid"></div>
+    </div>
 
 </div>
 
@@ -395,7 +429,7 @@
             date: "4/6 結束",
             link: "https://photos.app.goo.gl/a3Xu1SooACzsVQKY6",
             image: "a.jpg", 
-            active: true
+            active: false
         },
         {
             title: "飛天小女警快閃店",
@@ -409,21 +443,21 @@
             date: "4/7 結束",
             link: "https://photos.app.goo.gl/6VF5zPyghRxLE3j28",
             image: "NishimuraYuji.jpg", 
-            active: true
+            active: false
         },
         {
             title: "WITCH WATCH 魔女守護者期間限定店",
             date: "3/29 結束",
             link: "https://photos.app.goo.gl/wQPUXYadAoZit5Wu5",
             image: "witch.jpg", 
-            active: true
+            active: false
         },
         {
             title: "ONE-PUNCH MAN 一拳超人快閃店",
             date: "4/6 結束",
             link: "https://photos.app.goo.gl/QSm2SNFBv7LSB7Jx8",
             image: "man.png", 
-            active: true
+            active: false
         },
         {
             title: "航海王主題館期間限定店",
@@ -535,15 +569,22 @@
         document.getElementById('link-shopee').href = shopConfig.links.shopee;
         document.getElementById('footer-year').innerText = new Date().getFullYear();
         
-        // --- 設定懸浮按鈕的連結 ---
+        // 懸浮按鈕連結
         const floatBtn = document.getElementById('float-line-link');
         if(floatBtn) {
             floatBtn.href = shopConfig.links.lineOA;
         }
 
-        const listContainer = document.getElementById('album-list');
+        const activeListContainer = document.getElementById('active-album-list');
+        const endedListContainer = document.getElementById('ended-album-list');
+        const toggleBtnWrapper = document.getElementById('toggle-btn-wrapper');
+        const toggleEndedBtn = document.getElementById('toggle-ended-btn');
+        const endedSection = document.getElementById('ended-section');
 
-        if(listContainer) {
+        let activeCount = 0;
+        let endedCount = 0;
+
+        if(activeListContainer && endedListContainer) {
             albums.forEach(album => {
                 const card = document.createElement('a');
                 card.className = 'album-card';
@@ -551,9 +592,9 @@
                 card.target = "_blank";
 
                 const statusClass = album.active ? 'status-on' : 'status-off';
-                const statusText = album.active ? '🟢 代購中' : '🔴 已結束';
+                const statusText = album.active ? '🟢 代購中' : '展示中';
 
-                // 處理相簿圖片
+                // 👉 處理相簿圖片：這裡的程式碼保證了圖片會完整顯示！
                 let imgHtml = '';
                 if (album.image && album.image.length > 0) {
                     imgHtml = `<img src="${album.image}" alt="${album.title}" class="album-img" onerror="this.style.display='none'">`;
@@ -569,13 +610,34 @@
                         <div class="album-date">${album.date}</div>
                     </div>
                 `;
-                listContainer.appendChild(card);
+                
+                if (album.active) {
+                    activeListContainer.appendChild(card);
+                    activeCount++;
+                } else {
+                    endedListContainer.appendChild(card);
+                    endedCount++;
+                }
             });
+
+            // 設定收合按鈕
+            if (endedCount > 0) {
+                toggleBtnWrapper.style.display = "block";
+                toggleEndedBtn.innerText = `▼ 顯示已結束 (${endedCount})`;
+                
+                toggleEndedBtn.addEventListener('click', () => {
+                    if (endedSection.style.display === "none") {
+                        endedSection.style.display = "block";
+                        toggleEndedBtn.innerText = `▲ 隱藏已結束 (${endedCount})`;
+                    } else {
+                        endedSection.style.display = "none";
+                        toggleEndedBtn.innerText = `▼ 顯示已結束 (${endedCount})`;
+                    }
+                });
+            }
         }
     } catch (e) { console.log(e); }
 </script>
 
 </body>
 </html>
-
-
